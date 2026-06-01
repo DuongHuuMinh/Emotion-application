@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOODMAP SOUL - Ứng dụng Sức khỏe Tinh thần</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #A29BFE;
+            --accent: #00CEC9;
+            --bg-light: #F4F7F6;
+            --text-dark: #2D3436;
+            --text-gray: #636E72;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Quicksand', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* HEADER */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-size: 26px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-links { list-style: none; display: flex; gap: 35px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-cta { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); transition: 0.3s; }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(108, 92, 231, 0.5); }
+
+        /* HERO SECTION WITH PHONE MOCKUP */
+        .hero { display: flex; align-items: center; justify-content: space-between; padding: 120px 8% 80px; min-height: 100vh; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
+        .hero-content { flex: 1; max-width: 600px; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: #2d3436; }
+        .hero-content h1 span { color: var(--primary); }
+        .hero-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 30px; }
+        
+        /* THE SMARTPHONE MOCKUP */
+        .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; }
+        .smartphone { width: 320px; height: 650px; border: 12px solid #2d3436; border-radius: 40px; background: #fff; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.2); overflow: hidden; display: flex; flex-direction: column;}
+        .notch { width: 120px; height: 25px; background: #2d3436; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
+        
+        /* APP INTERFACE INSIDE MOCKUP */
+        .app-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 40px 20px 20px; text-align: center; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;}
+        .app-header h3 { font-size: 18px; }
+        .app-body { padding: 20px; flex: 1; overflow-y: auto; background: #f9f9f9;}
+        .mood-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .mood-btn { background: #fff; border: 2px solid #eee; padding: 15px; border-radius: 15px; font-size: 30px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .mood-btn:hover { border-color: var(--primary); transform: scale(1.05); }
+        .mood-log { background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .mood-log h4 { font-size: 14px; margin-bottom: 10px; color: var(--text-gray); }
+        #log-list { list-style: none; font-size: 13px; }
+        #log-list li { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; animation: fadeIn 0.5s;}
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* PROBLEM SECTION */
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 15px; color: var(--text-dark); }
+        .section-subtitle { text-align: center; color: var(--text-gray); margin-bottom: 50px; font-size: 1.1rem; }
+        .problems { padding: 80px 8%; background: var(--white); }
+        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .problem-card { text-align: center; padding: 30px; background: var(--bg-light); border-radius: 20px; transition: 0.3s; }
+        .problem-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .problem-card img { width: 80px; margin-bottom: 20px; }
+        .problem-card h3 { color: #d63031; margin-bottom: 10px; }
+
+        /* FEATURES SECTION */
+        .features { padding: 80px 8%; }
+        .feature-item { display: flex; align-items: center; gap: 50px; margin-bottom: 60px; }
+        .feature-item:nth-child(even) { flex-direction: row-reverse; }
+        .feature-text { flex: 1; }
+        .feature-text h3 { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+        .feature-text ul { list-style: none; margin-top: 15px; }
+        .feature-text ul li { margin-bottom: 10px; font-size: 1.1rem; }
+        .feature-text ul li i { color: var(--accent); margin-right: 10px; }
+        .feature-img { flex: 1; text-align: center; }
+        .feature-img div { width: 100%; height: 300px; background: linear-gradient(45deg, #e0c3fc 0%, #8ec5fc 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        /* BUSINESS MODEL & PRICING */
+        .business { padding: 80px 8%; background: var(--white); }
+        .pricing-grid { display: flex; justify-content: center; gap: 40px; margin-top: 40px; }
+        .price-card { background: var(--bg-light); width: 350px; padding: 40px; border-radius: 20px; text-align: center; border: 2px solid transparent; transition: 0.3s; }
+        .price-card.premium { border-color: var(--primary); background: #fff; box-shadow: 0 20px 40px rgba(108, 92, 231, 0.15); transform: scale(1.05); }
+        .price-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .price-card .price { font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
+        .price-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
+        .price-card ul li { margin-bottom: 12px; }
+        .price-card ul li i { color: #27ae60; margin-right: 10px; }
+        .btn-outline { display: inline-block; padding: 10px 25px; border: 2px solid var(--primary); color: var(--primary); border-radius: 25px; text-decoration: none; font-weight: bold; }
+        
+        /* FOUNDER SECTION */
+        .founder { padding: 60px 8%; background: var(--primary); color: white; text-align: center; }
+        .founder h2 { margin-bottom: 20px; }
+        .founder-info { background: rgba(255,255,255,0.1); display: inline-block; padding: 20px 40px; border-radius: 15px; backdrop-filter: blur(5px); }
+
+        /* FOOTER */
+        footer { background: #2d3436; color: white; text-align: center; padding: 30px 8%; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo"><i class="fa-solid fa-seedling"></i> MOODMAP SOUL</a>
+        <ul class="nav-links">
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#problems">Vấn đề</a></li>
+            <li><a href="#features">Giải pháp</a></li>
+            <li><a href="#business">Mô hình Doanh thu</a></li>
+        </ul>
+        <a href="#home" class="btn-cta">Trải nghiệm Demo</a>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Lắng nghe cảm xúc, <br><span>Chữa lành tâm hồn.</span></h1>
+            <p>Ứng dụng giúp người trẻ ghi lại tâm trạng, chia sẻ ẩn danh và kết nối trực tiếp với chuyên gia tâm lý 24/7. Một không gian an toàn để bạn hiểu rõ chính mình.</p>
+            <a href="#features" class="btn-cta">Khám phá tính năng</a>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="smartphone">
+                <div class="notch"></div>
+                <div class="app-header">
+                    <h3>Xin chào Tâm Đoan 👋</h3>
+                    <p style="font-size: 13px; opacity: 0.8;">Hôm nay bạn cảm thấy thế nào?</p>
+                </div>
+                <div class="app-body">
+                    <div class="mood-grid">
+                        <button class="mood-btn" onclick="addMood('Vui vẻ', '😄', '#00b894')">😄</button>
+                        <button class="mood-btn" onclick="addMood('Bình yên', '😌', '#0984e3')">😌</button>
+                        <button class="mood-btn" onclick="addMood('Căng thẳng', '😫', '#d63031')">😫</button>
+                        <button class="mood-btn" onclick="addMood('Buồn bã', '😢', '#6c5ce7')">😢</button>
+                    </div>
+                    <div class="mood-log">
+                        <h4>Nhật ký gần đây (Bản đồ)</h4>
+                        <ul id="log-list">
+                            <li><span>Hôm qua, 20:00</span> <span style="color:#0984e3">Bình yên 😌</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problems" class="problems">
+        <h2 class="section-title">Nỗi Đau Của Giới Trẻ Hiện Tại</h2>
+        <p class="section-subtitle">Tại sao chúng ta lại cần MOODMAP SOUL?</p>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: #d63031; margin-bottom: 15px;"></i>
+                <h3>Áp Lực Học Tập & Công Việc</h3>
+                <p>Học sinh, sinh viên và người đi làm liên tục đối mặt với stress kéo dài, mệt mỏi nhưng không biết cách giải tỏa.</p>
+            </div>
+            <div class="problem-card">
+                <i class="fa-solid fa-users-slash" style="font-size: 3rem; color: #d63031; margin-bottom: 15px;"></i>
+                <h3>Sợ Bị Phán Xét</h3>
+                <p>Khó khăn trong việc tâm sự với người thân, sợ đăng lên mạng xã hội cá nhân vì e ngại ánh nhìn của người khác.</p>
+            </div>
+            <div class="problem-card">
+                <i class="fa-solid fa-hand-holding-dollar" style="font-size: 3rem; color: #d63031; margin-bottom: 15px;"></i>
+                <h3>Chi Phí Tư Vấn Cao</h3>
+                <p>Rào cản tài chính khiến người trẻ khó tiếp cận được với các chuyên gia tâm lý có chuyên môn khi cần thiết.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2 class="section-title">Giải Pháp Từ MOODMAP SOUL</h2>
+        
+        <div class="feature-item">
+            <div class="feature-text">
+                <h3>1. Bản Đồ Cảm Xúc (Mood Tracking)</h3>
+                <p>Ghi lại cảm xúc hằng ngày chỉ với 1 chạm. AI sẽ tổng hợp và vẽ lên "Bản đồ tâm trạng" giúp bạn nhận ra chu kỳ cảm xúc của chính mình.</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Biểu đồ thống kê theo tuần/tháng.</li>
+                    <li><i class="fa-solid fa-check"></i> Nhắc nhở chăm sóc bản thân.</li>
+                </ul>
+            </div>
+            <div class="feature-img">
+                <div style="background: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%); color: #2d3436;">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-text">
+                <h3>2. Mạng Xã Hội Ẩn Danh</h3>
+                <p>Một không gian an toàn, chia sẻ ẩn danh những góc khuất trong tâm hồn. Nơi bạn được lắng nghe bởi những người đồng điệu.</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Bảo mật danh tính 100%.</li>
+                    <li><i class="fa-solid fa-check"></i> Hệ thống AI lọc ngôn từ độc hại.</li>
+                </ul>
+            </div>
+            <div class="feature-img">
+                <div style="background: linear-gradient(45deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);">
+                    <i class="fa-solid fa-masks-theater"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-text">
+                <h3>3. Cố Vấn Tâm Lý 24/7</h3>
+                <p>Kết nối ngay lập tức với đội ngũ chuyên gia tư vấn tâm lý chuyên nghiệp qua chat hoặc gọi điện trực tuyến.</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Linh hoạt thời gian.</li>
+                    <li><i class="fa-solid fa-check"></i> Chi phí hợp lý cho sinh viên.</li>
+                </ul>
+            </div>
+            <div class="feature-img">
+                <div style="background: linear-gradient(45deg, #a18cd1 0%, #fbc2eb 100%);">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="business" class="business">
+        <h2 class="section-title">Mô Hình Doanh Thu</h2>
+        <p class="section-subtitle">Dự án có khả năng sinh lời bền vững thông qua hệ sinh thái dịch vụ.</p>
+        
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Gói Miễn Phí</h3>
+                <div class="price">0đ<span>/tháng</span></div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Ghi chú cảm xúc hằng ngày</li>
+                    <li><i class="fa-solid fa-check"></i> Tham gia cộng đồng ẩn danh</li>
+                    <li><i class="fa-solid fa-check"></i> Đọc bài viết chữa lành</li>
+                    <li style="color: #b2bec3;"><i class="fa-solid fa-xmark" style="color: #b2bec3;"></i> Có hiển thị quảng cáo</li>
+                </ul>
+                <a href="#" class="btn-outline">Trải nghiệm ngay</a>
+            </div>
+
+            <div class="price-card premium">
+                <h3>Gói Premium</h3>
+                <div class="price">49K<span>/tháng</span></div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Không quảng cáo</li>
+                    <li><i class="fa-solid fa-check"></i> AI phân tích tâm lý chuyên sâu</li>
+                    <li><i class="fa-solid fa-check"></i> Giảm 20% khi book lịch Chuyên gia</li>
+                    <li><i class="fa-solid fa-check"></i> Tham gia Workshop Offline miễn phí</li>
+                </ul>
+                <a href="#" class="btn-cta" style="display: block;">Đăng ký Premium</a>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; font-weight: bold; color: var(--text-gray);">
+            *Nguồn thu khác: Hoa hồng từ dịch vụ tư vấn tâm lý, Bán khóa học kỹ năng mềm, Hợp tác quảng cáo với nhãn hàng.
+        </div>
+    </section>
+
+    <section class="founder">
+        <h2>Đội Ngũ Sáng Lập</h2>
+        <div class="founder-info">
+            <h3>Trần Thị Tâm Đoan</h3>
+            <p>Tác giả ý tưởng | Lớp: DA25K | MSSV: 114625065</p>
+            <p style="margin-top: 10px; font-style: italic;">"Mang đến cho người trẻ một trạm sạc tinh thần an toàn và thấu cảm."</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Báo Cáo Chuyên Đề Kỹ Năng Mềm - Khởi Nghiệp. Đại Học Trà Vinh.</p>
+        <p>GVHD: Cao Thanh Tâm</p>
+    </footer>
+
+    <script>
+        // Xử lý Javascript cho App Mockup
+        function addMood(moodText, emoji, color) {
+            const list = document.getElementById('log-list');
+            const now = new Date();
+            const timeString = now.getHours() + ":" + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+            
+            // Tạo phần tử <li> mới
+            const li = document.createElement('li');
+            li.innerHTML = `<span>Hôm nay, ${timeString}</span> <span style="color:${color}; font-weight:bold;">${moodText} ${emoji}</span>`;
+            
+            // Chèn vào đầu danh sách
+            list.insertBefore(li, list.firstChild);
+
+            // Xóa bớt nếu danh sách dài quá 5 dòng để giao diện đẹp
+            if (list.children.length > 5) {
+                list.removeChild(list.lastChild);
+            }
+        }
+    </script>
+</body>
+</html>
