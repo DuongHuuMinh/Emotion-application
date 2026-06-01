@@ -23,21 +23,21 @@
 
         /* HEADER */
         header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
-        .logo { font-size: 26px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .nav-links { list-style: none; display: flex; gap: 35px; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
-        .btn-cta { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); transition: 0.3s; }
+        .btn-cta { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 10px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); transition: 0.3s; }
         .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(108, 92, 231, 0.5); }
 
-        /* HERO SECTION WITH PHONE MOCKUP */
+        /* HERO SECTION */
         .hero { display: flex; align-items: center; justify-content: space-between; padding: 120px 8% 80px; min-height: 100vh; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
         .hero-content { flex: 1; max-width: 600px; }
         .hero-content h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: #2d3436; }
         .hero-content h1 span { color: var(--primary); }
         .hero-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 30px; }
         
-        /* THE SMARTPHONE MOCKUP */
+        /* SMARTPHONE MOCKUP */
         .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; }
         .smartphone { width: 320px; height: 650px; border: 12px solid #2d3436; border-radius: 40px; background: #fff; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.2); overflow: hidden; display: flex; flex-direction: column;}
         .notch { width: 120px; height: 25px; background: #2d3436; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
@@ -62,7 +62,6 @@
         .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .problem-card { text-align: center; padding: 30px; background: var(--bg-light); border-radius: 20px; transition: 0.3s; }
         .problem-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .problem-card img { width: 80px; margin-bottom: 20px; }
         .problem-card h3 { color: #d63031; margin-bottom: 10px; }
 
         /* FEATURES SECTION */
@@ -80,7 +79,7 @@
         /* BUSINESS MODEL & PRICING */
         .business { padding: 80px 8%; background: var(--white); }
         .pricing-grid { display: flex; justify-content: center; gap: 40px; margin-top: 40px; }
-        .price-card { background: var(--bg-light); width: 350px; padding: 40px; border-radius: 20px; text-align: center; border: 2px solid transparent; transition: 0.3s; }
+        .price-card { background: var(--bg-light); width: 100%; max-width: 350px; padding: 40px; border-radius: 20px; text-align: center; border: 2px solid transparent; transition: 0.3s; }
         .price-card.premium { border-color: var(--primary); background: #fff; box-shadow: 0 20px 40px rgba(108, 92, 231, 0.15); transform: scale(1.05); }
         .price-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
         .price-card .price { font-size: 2.5rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
@@ -91,11 +90,36 @@
         
         /* FOUNDER SECTION */
         .founder { padding: 60px 8%; background: var(--primary); color: white; text-align: center; }
-        .founder h2 { margin-bottom: 20px; }
-        .founder-info { background: rgba(255,255,255,0.1); display: inline-block; padding: 20px 40px; border-radius: 15px; backdrop-filter: blur(5px); }
+        .founder h2 { margin-bottom: 25px; }
+        .founder-info { background: rgba(255,255,255,0.1); display: inline-block; padding: 25px 40px; border-radius: 15px; backdrop-filter: blur(5px); }
+        .founder-names { font-size: 1.2rem; font-weight: 600; margin-top: 10px; line-height: 1.8; }
 
         /* FOOTER */
-        footer { background: #2d3436; color: white; text-align: center; padding: 30px 8%; }
+        footer { background: #2d3436; color: white; text-align: center; padding: 30px 8%; line-height: 1.8; }
+
+        /* ========================================= */
+        /* MÃ LỆNH RESPONSIVE CHO ĐIỆN THOẠI DI ĐỘNG  */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .btn-cta { font-size: 14px; padding: 8px 20px; }
+            
+            .hero { flex-direction: column; padding: 160px 5% 50px; text-align: center; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .smartphone { margin-top: 40px; height: 600px; }
+            
+            .problem-grid { grid-template-columns: 1fr; }
+            
+            .feature-item, .feature-item:nth-child(even) { flex-direction: column; text-align: center; gap: 30px; }
+            .feature-text ul li { text-align: left; }
+            
+            .pricing-grid { flex-direction: column; align-items: center; }
+            .price-card.premium { transform: scale(1); }
+            
+            .founder-info { padding: 20px; width: 100%; }
+            .founder-names { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
@@ -106,9 +130,9 @@
             <li><a href="#home">Trang chủ</a></li>
             <li><a href="#problems">Vấn đề</a></li>
             <li><a href="#features">Giải pháp</a></li>
-            <li><a href="#business">Mô hình Doanh thu</a></li>
+            <li><a href="#business">Doanh thu</a></li>
         </ul>
-        <a href="#home" class="btn-cta">Trải nghiệm Demo</a>
+        <a href="#home" class="btn-cta">Dùng thử</a>
     </header>
 
     <section id="home" class="hero">
@@ -122,7 +146,7 @@
             <div class="smartphone">
                 <div class="notch"></div>
                 <div class="app-header">
-                    <h3>Xin chào Tâm Đoan 👋</h3>
+                    <h3>Xin chào bạn 👋</h3>
                     <p style="font-size: 13px; opacity: 0.8;">Hôm nay bạn cảm thấy thế nào?</p>
                 </div>
                 <div class="app-body">
@@ -247,22 +271,28 @@
             </div>
         </div>
         
-        <div style="text-align: center; margin-top: 40px; font-weight: bold; color: var(--text-gray);">
+        <div style="text-align: center; margin-top: 40px; font-weight: bold; color: var(--text-gray); font-size: 0.95rem; padding: 0 10px;">
             *Nguồn thu khác: Hoa hồng từ dịch vụ tư vấn tâm lý, Bán khóa học kỹ năng mềm, Hợp tác quảng cáo với nhãn hàng.
         </div>
     </section>
 
     <section class="founder">
-        <h2>Đội Ngũ Sáng Lập</h2>
+        <h2>Đội Ngũ Phát Triển</h2>
         <div class="founder-info">
-            <h3>Trần Thị Tâm Đoan</h3>
-            <p>Tác giả ý tưởng | Lớp: DA25K | MSSV: 114625065</p>
-            <p style="margin-top: 10px; font-style: italic;">"Mang đến cho người trẻ một trạm sạc tinh thần an toàn và thấu cảm."</p>
+            <p style="color: #dfe6e9; margin-bottom: 5px;">Thành viên nhóm:</p>
+            <div class="founder-names">
+                Dương Hữu Minh<br>
+                Mã Nhựt Tiến<br>
+                Võ Quốc Đạt<br>
+                Trần Thị Tâm Đoan
+            </div>
+            <p style="margin-top: 20px; font-style: italic; color: #ffeaa7;">"Mang đến cho người trẻ một trạm sạc tinh thần an toàn và thấu cảm."</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Báo Cáo Chuyên Đề Kỹ Năng Mềm - Khởi Nghiệp. Đại Học Trà Vinh.</p>
+        <p>&copy; 2026 Dự án: MOODMAP SOUL. Đại Học Trà Vinh.</p>
+        <p>Nhóm thực hiện: Dương Hữu Minh, Mã Nhựt Tiến, Võ Quốc Đạt, Trần Thị Tâm Đoan</p>
         <p>GVHD: Cao Thanh Tâm</p>
     </footer>
 
